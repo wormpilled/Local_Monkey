@@ -1,0 +1,100 @@
+/* FILE: /var/www/html/violent_monkey/aistudio/styles/custom.css */
+
+/* AI Studio Enhanced Styles */
+body.aistudio-enhanced {
+	--primary-color: #4285f4;
+	--success-color: #34a853;
+	--warning-color: #fbbc04;
+	--error-color: #ea4335;
+	--border-radius: 8px;
+	--shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Enhanced copy buttons */
+.copy-btn {
+	opacity: 0.7;
+	transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+	opacity: 1;
+	transform: scale(1.1);
+}
+
+/* Enhanced sidebar */
+.sidebar.enhanced,
+nav.enhanced {
+	transition: all 0.3s ease;
+}
+
+.sidebar.enhanced:hover,
+nav.enhanced:hover {
+	box-shadow: 4px 0 20px rgba(0,0,0,0.15) !important;
+}
+
+/* Export button animations */
+.export-btn {
+	transition: all 0.2s ease;
+	box-shadow: var(--shadow);
+}
+
+.export-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+/* Message enhancements */
+.message {
+	transition: background-color 0.2s ease;
+}
+
+.message:hover {
+	background-color: rgba(66, 133, 244, 0.05);
+}
+
+/* Keyboard shortcut indicators */
+button.shortcut-enhanced::after {
+	content: attr(title);
+	position: absolute;
+	bottom: -25px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: rgba(0,0,0,0.8);
+	color: white;
+	padding: 4px 8px;
+	border-radius: 4px;
+	font-size: 11px;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s ease;
+	white-space: nowrap;
+	z-index: 1000;
+}
+
+button.shortcut-enhanced:hover::after {
+	opacity: 1;
+}
+
+/* Loading animation for dynamic content */
+@keyframes pulse {
+	0% { opacity: 1; }
+	50% { opacity: 0.5; }
+	100% { opacity: 1; }
+}
+
+.loading {
+	animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+	.export-btn {
+		top: auto;
+		bottom: 10px;
+		right: 10px;
+		font-size: 10px;
+		padding: 6px 10px;
+	}
+}
+
+

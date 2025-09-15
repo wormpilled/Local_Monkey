@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Violent Monkey Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            border-left: 4px solid #4285f4;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .project-card h3 {
+            color: #4285f4;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .project-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .file-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .file-list li {
+            padding: 5px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .file-list li:before {
+            content: '📄 ';
+            margin-right: 8px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4285f4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background: #3367d6;
+        }
+        
+        .btn-secondary {
+            background: #34a853;
+        }
+        
+        .btn-secondary:hover {
+            background: #2d8f45;
+        }
+        
+        .status-section {
+            background: #e8f5e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .status-section h3 {
+            color: #34a853;
+            margin-bottom: 15px;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .status-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .status-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4285f4;
+            display: block;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #666;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .code-snippet {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 20px;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐒 Violent Monkey Development Environment</h1>
+            <p>Local development server for advanced userscripts</p>
+        </div>
+        
+        <div class="content">
+            <div class="status-section">
+                <h3>🚀 Development Status</h3>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span class="status-number">1</span>
+                        <small>Active Projects</small>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-number">5</span>
+                        <small>Total Scripts</small>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-number" id="server-status">●</span>
+                        <small>Server Status</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>🎯 AI Studio Project</h3>
+                    <p>Master controller system for AI Studio enhancements with modular script loading and live development capabilities.</p>
+                    
+                    <h4 style="margin: 20px 0 10px 0; color: #333;">Scripts:</h4>
+                    <ul class="file-list">
+                        <li>master.user.js</li>
+                        <li>scripts/chat-enhancer.js</li>
+                        <li>scripts/ui-tweaks.js</li>
+                        <li>scripts/auto-actions.js</li>
+                        <li>scripts/data-extractor.js</li>
+                        <li>utils/helpers.js</li>
+                        <li>styles/custom.css</li>
+                    </ul>
+                    
+                    <a href="aistudio/master.user.js" class="btn" target="_blank">View Master Script</a>
+                    <a href="aistudio/" class="btn btn-secondary" target="_blank">Browse Files</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🔧 Shared Utilities</h3>
+                    <p>Common functions and styles shared across all projects. Contains base utilities, helper functions, and global CSS.</p>
+                    
+                    <h4 style="margin: 20px 0 10px 0; color: #333;">Resources:</h4>
+                    <ul class="file-list">
+                        <li>shared/utils/common.js</li>
+                        <li>shared/styles/base.css</li>
+                    </ul>
+                    
+                    <a href="shared/" class="btn btn-secondary" target="_blank">Browse Shared</a>
+                </div>
+            </div>
+            
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 25px; margin-bottom: 30px;">
+                <h3 style="color: #4285f4; margin-bottom: 15px;">📋 Quick Start Guide</h3>
+                
+                <h4>1. Install the Master Script</h4>
+                <div class="code-snippet">// Copy this into Violentmonkey/Tampermonkey:
+// @match        https://aistudio.google.com/*
+// @match        https://aistudio.com/*</div>
+                
+                <h4>2. Development Workflow</h4>
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>Edit scripts in your preferred editor (VS Code, etc.)</li>
+                    <li>Save changes to <code>/var/www/html/violent_monkey/aistudio/</code></li>
+                    <li>Refresh the target website - scripts reload automatically</li>
+                    <li>Check browser console for debugging info</li>
+                </ol>
+                
+                <h4>3. Adding New Scripts</h4>
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>Create your script file in the appropriate directory</li>
+                    <li>Add it to the CONFIG.scripts array in master.user.js</li>
+                    <li>Set conditions and triggers for when it should load</li>
+                    <li>Test and debug using the console</li>
+                </ol>
+            </div>
+            
+            <div style="background: #fff3cd; border-radius: 8px; padding: 20px; margin-bottom: 30px; border-left: 4px solid #ffc107;">
+                <h3 style="color: #856404; margin-bottom: 15px;">⚡ Features</h3>
+                <ul style="margin-left: 20px; line-height: 1.8; color: #856404;">
+                    <li><strong>Hot Reloading:</strong> No cache headers ensure fresh script loading</li>
+                    <li><strong>Conditional Loading:</strong> Scripts load only when conditions are met</li>
+                    <li><strong>Trigger System:</strong> Control when scripts execute (document-ready, user-interaction, manual)</li>
+                    <li><strong>Error Handling:</strong> Graceful fallbacks and detailed logging</li>
+                    <li><strong>Modular Architecture:</strong> Shared utilities and independent script modules</li>
+                    <li><strong>Debug Mode:</strong> Console logging for development and troubleshooting</li>
+                </ul>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: #e3f2fd; padding: 20px; border-radius: 8px;">
+                    <h4 style="color: #1976d2; margin-bottom: 10px;">🌐 Server URLs</h4>
+                    <p style="font-family: monospace; background: white; padding: 10px; border-radius: 4px; font-size: 0.9em;">
+                        Base: http://127.0.0.1/violent_monkey/<br>
+                        AI Studio: http://127.0.0.1/violent_monkey/aistudio/
+                    </p>
+                </div>
+                
+                <div style="background: #f3e5f5; padding: 20px; border-radius: 8px;">
+                    <h4 style="color: #7b1fa2; margin-bottom: 10px;">📁 Directory Structure</h4>
+                    <p style="font-family: monospace; background: white; padding: 10px; border-radius: 4px; font-size: 0.9em;">
+                        /violent_monkey/<br>
+                        ├── shared/ (common files)<br>
+                        └── aistudio/ (project files)
+                    </p>
+                </div>
+                
+                <div style="background: #e8f5e8; padding: 20px; border-radius: 8px;">
+                    <h4 style="color: #388e3c; margin-bottom: 10px;">🛠️ Development Tips</h4>
+                    <ul style="font-size: 0.9em; line-height: 1.6;">
+                        <li>Use browser dev tools for debugging</li>
+                        <li>Check console for script load status</li>
+                        <li>Edit files with proper syntax highlighting</li>
+                        <li>Test on both HTTP and HTTPS versions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🐒 Violent Monkey Development Environment | Last updated: <span id="timestamp"></span></p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                <a href="https://violentmonkey.github.io/" target="_blank" style="color: #4285f4; text-decoration: none;">Violentmonkey Documentation</a> | 
+                <a href="https://wiki.greasespot.net/" target="_blank" style="color: #4285f4; text-decoration: none;">Userscript Wiki</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Update timestamp
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+        
+        // Check server status
+        async function checkServerStatus() {
+            try {
+                const response = await fetch('aistudio/master.user.js', { method: 'HEAD' });
+                const statusEl = document.getElementById('server-status');
+                if (response.ok) {
+                    statusEl.textContent = '🟢';
+                    statusEl.title = 'Server Online';
+                    statusEl.style.color = '#34a853';
+                } else {
+                    statusEl.textContent = '🟡';
+                    statusEl.title = 'Server Issues';
+                    statusEl.style.color = '#fbbc04';
+                }
+            } catch (error) {
+                const statusEl = document.getElementById('server-status');
+                statusEl.textContent = '🔴';
+                statusEl.title = 'Server Offline';
+                statusEl.style.color = '#ea4335';
+            }
+        }
+        
+        checkServerStatus();
+        setInterval(checkServerStatus, 30000); // Check every 30 seconds
+        
+        // Add some interactivity
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderLeftColor = '#34a853';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.borderLeftColor = '#4285f4';
+            });
+        });
+    </script>
+</body>
+</html>
